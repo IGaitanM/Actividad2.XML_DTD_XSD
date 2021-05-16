@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>  
+<biblioteca xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" 
+xsi:noNamespaceSchemaLocation= "validacion_XSD.xsd" >
+    <libros>
+        <libro id="L0000" tipo_clase="novela" paginas="0">
+            <titulo></titulo>
+            <indice>
+                <capitulo paginas="0">
+                    <titulo_cap></titulo_cap>
+                    <contenido enlace=""></contenido>
+                </capitulo>
+            </indice>
+            <sinopsis></sinopsis>
+        </libro>
+    </libros>
+    <periodicos>
+        <periodico id="P0000" tipo_clase="nacionales" fecha="2020-05-11">
+            <secciones>
+                <seccion tipo_seccion="economica">
+                        <articulo autor=""></articulo>
+                </seccion>
+            </secciones>
+            <indice_periodico></indice_periodico>
+            <contenido_periodico enlace=""></contenido_periodico>
+        </periodico>
+    </periodicos>
+    <revistas>
+        <revista id="R0000" tipo_clase="informatica" paginas="0">
+            <titulo_revista></titulo_revista>
+            <numero>0</numero>
+            <indice_revista>0</indice_revista>
+            <secciones_revista>
+                <seccion_revista paginas="0">
+                    <contenido_seccion enlace=""></contenido_seccion>
+                </seccion_revista>
+            </secciones_revista>
+            <contenido_revista enlace=""></contenido_revista>
+        </revista>
+    </revistas>
+</biblioteca>

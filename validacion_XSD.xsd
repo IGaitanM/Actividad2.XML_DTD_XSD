@@ -1,0 +1,195 @@
+<?xml version="1.0"?>
+<schema xmlns="http://www.w3.org/2001/XMLSchema">
+    <annotation>
+        <documentation>
+            Esquema que marca la estructura de una biblioteca con libros, periodicos y revistas"
+         </documentation>
+    </annotation>
+    <element name="biblioteca">
+        <complexType>
+            <all>
+                <element name="libros">
+                    <complexType>
+                        <sequence>
+                            <element name="libro" maxOccurs="unbounded">
+                                <complexType>
+                                    <sequence>
+                                        <element name="titulo" type="string" ></element>
+                                        <element name="indice">
+                                            <complexType>
+                                                <sequence>
+                                                    <element name="capitulo" maxOccurs="unbounded">
+                                                        <complexType>
+                                                            <sequence>
+                                                                <element name="titulo_cap" type="string"></element>
+                                                                <element name="contenido">
+                                                                    <complexType>
+                                                                        <attribute name="enlace" use="required"></attribute>
+                                                                    </complexType>
+                                                                </element>
+                                                            </sequence>
+                                                        <attribute name="paginas" type="integer"></attribute>
+                                                        </complexType>
+                                                    </element>
+                                                </sequence>
+                                            </complexType>
+                                        </element>
+                                        <element name="sinopsis" type="string"></element>
+                                    </sequence>
+                                    <!-- Validación de id con expresión regular (1ª letra L y el resto 4 números) -->
+                                    <attribute name="id" use="required">
+                                        <simpleType>
+                                            <restriction base="string">
+                                            <pattern value="[L][0-9]{4}"></pattern>                                            
+                                            </restriction>
+                                        </simpleType>
+                                    </attribute>
+                                    <!-- El tipo clase de libro solo puede ser novela, infantil o didactico-->
+                                    <attribute name="tipo_clase" use="required">
+                                        <simpleType>
+                                            <restriction base="string">
+                                                <enumeration value="novela"></enumeration>
+                                                <enumeration value="infantil"></enumeration>
+                                                <enumeration value="didactico"></enumeration>
+                                            </restriction>
+                                        </simpleType>
+                                    </attribute>
+                                    <attribute name="paginas" type="integer"></attribute>
+                                </complexType>
+                            </element>
+                        </sequence>
+                    </complexType>
+                </element>
+                <element name="periodicos">
+                    <complexType>
+                        <sequence>
+                            <element name="periodico" maxOccurs="unbounded">
+                                <complexType>
+                                    <sequence>
+                                        <element name="secciones" maxOccurs="unbounded">
+                                            <complexType>
+                                                <sequence>
+                                                    <element name="seccion" maxOccurs="unbounded">
+                                                        <complexType>
+                                                            <all>
+                                                                <element name="articulo">
+                                                                    <complexType>
+                                                                        <simpleContent>
+                                                                            <extension base="string">
+                                                                                <attribute name="autor"></attribute>
+                                                                            </extension>
+                                                                        </simpleContent>
+                                                                    </complexType>
+                                                                </element>
+                                                            </all>
+                                                        <attribute name="tipo_seccion"  use="required">
+                                                         <!-- El tipo de sección de periodico solo puede ser economica | opinion | deportes | nacional | internacional-->
+                                                                <simpleType>
+                                                                    <restriction base="string">
+                                                                        <enumeration value="economica"></enumeration>
+                                                                        <enumeration value="opinion"></enumeration>
+                                                                        <enumeration value="deportes"></enumeration>
+                                                                        <enumeration value="nacional"></enumeration>
+                                                                        <enumeration value="internacional"></enumeration>
+                                                                    </restriction>
+                                                                </simpleType>
+                                                            </attribute>
+                                                        </complexType>
+                                                    </element>
+                                                </sequence>
+                                            </complexType>
+                                        </element>
+                                        <element name="indice_periodico" type="string" maxOccurs="unbounded"></element>
+                                        <element name="contenido_periodico">
+                                            <complexType>
+                                                <attribute name="enlace" use="required"></attribute>
+                                            </complexType>
+                                        </element>
+                                    </sequence>
+                                    <!-- Validación de id con expresión regular (1ª letra P y el resto 4 números) -->
+                                    <attribute name="id" use="required">
+                                        <simpleType>
+                                            <restriction base="string">
+                                            <pattern value="[P][0-9]{4}"></pattern>                                            
+                                            </restriction>
+                                        </simpleType>
+                                    </attribute>
+                                    <!-- El tipo clase de periodico solo puede ser nacioales o internacionales-->
+                                    <attribute name="tipo_clase" use="required">
+                                        <simpleType>
+                                            <restriction base="string">
+                                                <enumeration value="nacionales"></enumeration>
+                                                <enumeration value="internacionales"></enumeration>
+                                            </restriction>
+                                        </simpleType>
+                                    </attribute>
+                                    <attribute name="fecha" type="date"></attribute>
+                                </complexType>
+                            </element>
+                        </sequence>
+                    </complexType>
+                </element>
+                <element name="revistas">
+                    <complexType>
+                        <sequence>
+                            <element name="revista" maxOccurs="unbounded">
+                                <complexType>
+                                    <sequence>
+                                        <element name="titulo_revista" type="string"></element>
+                                        <element name="numero" type="integer" maxOccurs="unbounded"></element>
+                                        <element name="indice_revista" type="integer" maxOccurs="unbounded"></element>
+                                        <element name="secciones_revista" maxOccurs="unbounded">
+                                            <complexType>
+                                                <sequence>
+                                                    <element name="seccion_revista" maxOccurs="unbounded">
+                                                        <complexType>
+                                                            <sequence>
+                                                                <element name="contenido_seccion" maxOccurs="unbounded">
+                                                                    <complexType>
+                                                                        <attribute name="enlace" use="required"></attribute>
+                                                                    </complexType>
+                                                                </element>
+                                                            </sequence>
+                                                        <attribute name="paginas" type="integer"></attribute>
+                                                        </complexType>
+                                                    </element>
+                                                </sequence>
+                                            </complexType>
+                                        </element>
+                                        <element name="contenido_revista">
+                                            <complexType>
+                                                <attribute name="enlace" use="required"></attribute>
+                                            </complexType>
+                                        </element>
+                                    </sequence>
+                                    <!-- Validación de id con expresión regular (1ª letra R y el resto 4 números) -->
+                                    <attribute name="id" use="required">
+                                        <simpleType>
+                                            <restriction base="string">
+                                            <pattern value="[R][0-9]{4}"></pattern>                                            
+                                            </restriction>
+                                        </simpleType>
+                                    </attribute>
+                                <!-- El tipo clase de periodico solo puede ser informatica | corazon | coches | investigacion | otras-->
+                                    <attribute name="tipo_clase" use="required">
+                                        <simpleType>
+                                            <restriction base="string">
+                                                <enumeration value="informatica"></enumeration>
+                                                <enumeration value="corazon"></enumeration>
+                                                <enumeration value="coches"></enumeration>
+                                                <enumeration value="investigacion"></enumeration>
+                                                <enumeration value="otras"></enumeration>
+                                            </restriction>
+                                        </simpleType>
+                                    </attribute>
+                                    <attribute name="paginas" type="integer"></attribute>
+                                </complexType>
+                            </element>
+                        </sequence>
+                    </complexType>
+
+                </element>
+            </all>
+        </complexType>
+    </element>
+</schema>
